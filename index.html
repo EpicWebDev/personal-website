@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mihai | Freelance Developer</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/fullpage.css">
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        /* Photo Banner */
+        .container {
+            width: 100%;
+            overflow: hidden;
+            margin: 10px auto;
+            background: white;
+        }
+
+
+
+        /* li.active a {
+            font-size: 1.2em;
+            transition: all 0.3s;
+        } */
+
+        li a {
+            transition: all 0.3s;
+        }
+
+        .section .container {
+            background-color: rgba(0, 0, 0, 0);
+            margin: 0;
+        }
+
+        #particles canvas {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .section .card1 {
+            opacity: 0;
+            transform: translateY(-40px);
+        }
+
+        .section.visible .card1 {
+            opacity: 1;
+            transition: all 0.5s;
+            transition-delay: 0s;
+            transform: translateY(0px);
+        }
+
+        .section .card2 {
+            opacity: 0;
+            transform: translateY(-40px);
+        }
+
+        .section.visible .card2 {
+            opacity: 1;
+            transition: all 0.5s;
+            transition-delay: 0.2s;
+            transform: translateY(0px);
+        }
+
+        .section .card3 {
+            opacity: 0;
+            transform: translateY(-40px);
+        }
+
+        .section.visible .card3 {
+            opacity: 1;
+            transition: all 0.5s;
+            transition-delay: 0.4s;
+            transform: translateY(0px);
+        }
+
+        .section .card4 {
+            opacity: 0;
+            transform: translateY(-40px);
+        }
+
+        .section.visible .card4 {
+            opacity: 1;
+            transition: all 0.5s;
+            transition-delay: 0.6s;
+            transform: translateY(0px);
+        }
+
+        h1 {
+            display: inline-block;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        span.underline-animation {
+            display: inline-block;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .underline-animation:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 4px;
+            bottom: 0;
+            left: 0;
+            background-color: #0087ca;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        .active .underline-animation:after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        #section0 .underline-animation:after {
+            background-color: #3289fa;
+        }
+
+        #section1 .underline-animation:after {
+            background-color: #2ff736;
+        }
+
+        #section2 .underline-animation:after {
+            background-color: #fcbf30;
+        }
+
+        #section3 .underline-animation:after {
+            background-color: #fa3232;
+        }
+
+        .active .delay1:after {
+            transition-delay: 0.5s;
+        }
+
+        .active .delay2:after {
+            transition-delay: 0.8s;
+        }
+
+        .active .delay3:after {
+            transition-delay: 1.2s;
+        }
+
+        .active .delay4:after {
+            transition-delay: 1.5s;
+        }
+
+        .center {
+            margin: 0 auto;
+        }
+
+        .outer-ring {
+            display: inline-block;
+            position: relative;
+            top: 5px;
+            left: -20px;
+            height: 22px;
+            width: 22px;
+            /* background-image: linear-gradient(135deg, #FEED07 0%, #FE6A50 5%, #ED00AA 15%, #2FE3FE 50%, #8900FF 100%); */
+            border-radius: 50%;
+
+            /*  Rotate  */
+            animation-duration: 5s;
+            animation-name: rotate;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            transition: all 0.2s;
+        }
+
+        .outer-ring-blue {
+            background-image: linear-gradient(135deg, blue 0%, #b3a6ff 80%);
+        }
+
+        .outer-ring-green {
+            background-image: linear-gradient(135deg, #02c965 0%, rgb(194, 228, 195) 80%);
+        }
+
+        .outer-ring-orange {
+            background-image: linear-gradient(135deg, #fcbf30 0%, #fcbf30 70%, #f7eed0 100%);
+        }
+
+        .outer-ring-red {
+            background-image: linear-gradient(135deg, #fa3232 0%, #fa3232 70%, #9a2ffe 100%);
+        }
+
+        .inner-ring {
+            display: inline-block;
+            position: relative;
+            left: -44px;
+            top: 2px;
+            height: 17px;
+            width: 17px;
+            /* background-image: linear-gradient(0deg, #36295e, #1c1045); */
+            background-color: rgb(229, 231, 235);
+            border-radius: 50%;
+            transition: all 0.2s;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .active .outer-ring {
+            animation-duration: 1.5s;
+            left: -20px;
+            height: 30px;
+            width: 30px;
+        }
+
+        .active .inner-ring {
+            left: -52px;
+            top: 2px;
+            height: 25px;
+            width: 25px;
+        }
+
+        input::placeholder {
+            color: rgba(0, 0, 0, 0.7);
+            text-align: center;
+            transition: color linear 0.1s;
+        }
+
+        input:focus::placeholder {
+            color: transparent;
+        }
+
+        .slick-prev:before {
+            color: rgb(68, 51, 18);
+        }
+
+        .slick-next:before {
+            color: rgb(68, 51, 18);
+        }
+
+        .portfolio-card {
+            width: 200px;
+            height: 200px;
+        }
+
+        #portfolio-project-1{
+            background-image: url("images/3piliers-logo.png");
+            background-position: center;
+            background-size: cover;
+        }
+        #portfolio-project-2{
+            background-image: url("images/Vikas-logo.png");
+            background-position: center;
+            background-size: cover;
+        }
+        #portfolio-project-3{
+            background-image: url("images/spring-logo-resized.png");
+            background-position: center;
+            background-size: cover;
+        }
+        #portfolio-project-4{
+            background-image: url("images/Nuance-logo-resized.png");
+            background-position: center;
+            background-size: cover;
+        }
+        #portfolio-project-5{
+            background-image: url("images/htmlcssjs-resized.png");
+            background-position: center;
+            background-size: cover;
+        }
+        #portfolio-project-6{
+            background-image: url("images/fmath-resized.png");
+            background-position: center;
+            background-size: cover;
+        }
+        #portfolio-project-7{
+            background-image: url("images/oratek-resized.png");
+            background-position: center;
+            background-size: cover;
+        }
+        #portfolio-project-8{
+            background-image: url("images/Blockchain-resized.png");
+            background-position: center;
+            background-size: cover;
+        }
+        #portfolio-project-9{
+            background-image: url("images/Java-resized.png");
+            background-position: center;
+            background-size: cover;
+        }
+
+        .portfolio-card:hover .portfolio-hover {
+            opacity: 1;
+        }
+
+        .portfolio-hover {
+            transition: opacity 0.2s linear;
+            opacity: 0;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .portfolio-card-image {}
+
+        #send-button {
+            box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+        }
+
+        .modal-content {
+            width: 600px;
+            height: 600px;
+            overflow-y: auto;
+        }
+
+        /* custom scrollbar */
+        #scrollbar-style::-webkit-scrollbar {
+            width: 20px;
+        }
+
+        #scrollbar-style::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        #scrollbar-style::-webkit-scrollbar-thumb {
+            background-color: #d1b084;
+            border-radius: 20px;
+            border: 6px solid transparent;
+            background-clip: content-box;
+        }
+
+        #scrollbar-style::-webkit-scrollbar-thumb:hover {
+            background-color: #b47727;
+        }
+    </style>
+
+</head>
+
+<body class="flex">
+    <div class="w-64 h-full bg-gray-200 flex content-center shadow-2xl">
+        <ul class="m-auto" id="menu">
+            <li data-menuanchor="firstSection" class="active block pb-10">
+                <div class="outer-ring center outer-ring-blue"></div>
+                <div class="inner-ring center"></div><a href="#firstSection">About me</a>
+            </li>
+            <li data-menuanchor="secondSection" class="block pb-10">
+                <div class="outer-ring center outer-ring-green"></div>
+                <div class="inner-ring center"></div><a href="#secondSection">Skills</a>
+            </li>
+            <li data-menuanchor="thirdSection" class="block pb-10">
+                <div class="outer-ring center outer-ring-orange"></div>
+                <div class="inner-ring center"></div><a href="#thirdSection">Portfolio</a>
+            </li>
+            <li data-menuanchor="fourthSection" class="block">
+                <div class="outer-ring center outer-ring-red"></div>
+                <div class="inner-ring center"></div><a href="#fourthSection">Contact me</a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="fullpage" class="w-full">
+        <div id="tsparticles"></div>
+        <div class="section active" id="section0">
+            <div class="transition-all duration-1000 ease-in-out container mx-auto h-screen p-28 text-center">
+                <h1 class="text-5xl text-center mb-20 underline-animation delay1">About me</h1>
+                <div class="">
+                    <div class="text-center">My name is Mihai Alexandru, I am a freelance developer from <span
+                            class="underline-animation delay2">Montreal</span>,
+                        Canada. I have a passion for all aspects of development and like to expand my knowledge of new
+                        stacks and frameworks. I have a Computer Science degree from <span
+                            class="underline-animation delay3">McGill University</span> and my passion
+                        right now is learning about Blockchain development and 3D video game animations.</div>
+                    <!-- <div><img src="./images/Cliffs.jpeg" alt=""></div> -->
+                </div>
+            </div>
+        </div>
+        <div class="section" id="section1">
+            <div class="container mx-auto h-screen p-20 text-center">
+                <h1 class="text-5xl text-center mb-20 underline-animation delay1">Skills</h1>
+                <div class="flex justify-around">
+                    <div class="p-10 flex align-middle justify-center bg-white shadow-2xl rounded-xl w-40 card1">
+                        <ul class="list-none text-center my-auto">
+                            <li>HTML5</li>
+                            <li>CSS3</li>
+                            <li>Javascript</li>
+                            <li><span class="underline-animation delay4">Angular</span></li>
+                            <li>React</li>
+                            <li>Vue</li>
+                            <li>GraphQL</li>
+                            <li>Tailwind</li>
+                            <li>Bootstrap</li>
+                        </ul>
+                    </div>
+                    <div class="p-10 flex justify-center align-end bg-white shadow-2xl rounded-xl w-40 card2">
+                        <ul class="list-none text-center my-auto">
+                            <li><span class="underline-animation delay3">Spring</span></li>
+                            <li>Node.js</li>
+                            <li>Express</li>
+                            <li>MySQL</li>
+                            <li>PostgreSQL</li>
+                            <li>MongoDB</li>
+                            <li>AWS</li>
+                            <li>Google Cloud</li>
+                        </ul>
+                    </div>
+                    <div class="p-10 flex justify-center align-end bg-white shadow-2xl rounded-xl w-40 card3">
+                        <ul class="list-none text-center my-auto">
+                            <li><span class="underline-animation delay2">Java</span></li>
+                            <li>C</li>
+                            <li>C#</li>
+                            <li>C++</li>
+                            <li>Python</li>
+                            <li>Kotlin</li>
+                            <li>Go</li>
+                            <li>Liquid</li>
+                        </ul>
+                    </div>
+                    <div class="p-10 flex justify-center align-end bg-white shadow-2xl rounded-xl w-40 card4">
+                        <ul class="list-none text-center my-auto">
+                            <li>Git</li>
+                            <li>SVN</li>
+                            <li>Postman</li>
+                            <li>Docker</li>
+                            <li>Android Studio</li>
+                            <li>Wordpress</li>
+                            <li>Shopify</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- <div class="photobanner">
+                        <img class="first" src="http://placehold.it/350x150">
+                        <img src="http://placehold.it/350x150">
+                        <img src="http://placehold.it/350x150">
+                        <img src="http://placehold.it/350x150">
+                        <img src="http://placehold.it/350x150">
+                        <img src="http://placehold.it/350x150">
+                        <img src="http://placehold.it/350x150">
+                        <img src="http://placehold.it/350x150">
+                        <img src="http://placehold.it/350x150">
+                        <img src="http://placehold.it/350x150">
+                    </div> -->
+            </div>
+        </div>
+        <div class="section" id="section2" x-data="{ 'showModal': false, 'showModal2': false, 'showModal3': false, 'showModal4': false, 'showModal5': false, 'showModal6': false, 'showModal7': false, 'showModal8': false, 'showModal9': false }">
+            <div class="container mx-auto h-screen p-20 text-center">
+                <h1 class="text-5xl text-center underline-animation delay2 mb-8">Portfolio</h1>
+                <div class="slider-container center">
+                    <div class="slider">
+                        <div class="slider-group pb-20">
+                            <div class="flex justify-around mb-12">
+                                <div id="portfolio-project-1" class="portfolio-card bg-white shadow-2xl rounded-xl overflow-hidden">
+                                    <div class="portfolio-hover h-full w-full text-center" @click="showModal = true">
+                                        Marché 3 Piliers
+                                    </div>
+                                </div>
+                                <div id="portfolio-project-2" class="portfolio-card bg-white shadow-2xl rounded-xl overflow-hidden">
+                                    <div class="portfolio-hover h-full w-full text-center" @click="showModal2 = true">
+                                        UI/UX Portfolio Website
+                                    </div>
+                                </div>
+                                <div id="portfolio-project-3" class="portfolio-card bg-white shadow-2xl rounded-xl overflow-hidden">
+                                    <div class="portfolio-hover h-full w-full text-center" @click="showModal3 = true">
+                                        Spring Projects
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex justify-around">
+                                <div id="portfolio-project-4" class="portfolio-card bg-white shadow-2xl rounded-xl overflow-hidden">
+                                    <div class="portfolio-hover h-full w-full text-center" @click="showModal4 = true">
+                                        Nuance Internship
+                                    </div>
+                                </div>
+                                <div id="portfolio-project-5" class="portfolio-card bg-white shadow-2xl rounded-xl overflow-hidden">
+                                    <div class="portfolio-hover h-full w-full text-center" @click="showModal5 = true">
+                                        Front-End Projects
+                                    </div>
+                                </div>
+                                <div id="portfolio-project-6" class="portfolio-card bg-white shadow-2xl rounded-xl overflow-hidden">
+                                    <div class="portfolio-hover h-full w-full text-center" @click="showModal6 = true">
+                                        FMath Editor
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slider-group pb-20">
+                            <div class="flex justify-around mb-12">
+                                <div id="portfolio-project-7" class="portfolio-card bg-white shadow-2xl rounded-xl overflow-hidden">
+                                    <div class="portfolio-hover h-full w-full text-center" @click="showModal7 = true">
+                                        Oratek360
+                                    </div>
+                                </div>
+                                <div id="portfolio-project-8" class="portfolio-card bg-white shadow-2xl rounded-xl overflow-hidden">
+                                    <div class="portfolio-hover h-full w-full text-center"  @click="showModal8 = true">
+                                        Blockchain Work
+                                    </div>
+                                </div>
+                                <div id="portfolio-project-9" class="portfolio-card bg-white shadow-2xl rounded-xl overflow-hidden">
+                                    <div class="portfolio-hover h-full w-full text-center"  @click="showModal9 = true">
+                                        Java Projects
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="flex justify-around">
+                                <div class="portfolio-card bg-white shadow-2xl rounded-xl overflow-hidden">
+                                    <div class="portfolio-hover h-full w-full text-center"  @click="showModal = true">
+                                        Test Title
+                                    </div>
+                                </div>
+                                <div class="portfolio-card bg-white shadow-2xl rounded-xl overflow-hidden">
+                                    <div class="portfolio-hover h-full w-full text-center"  @click="showModal = true">
+                                        Test Title
+                                    </div>
+                                </div>
+                                <div class="portfolio-card bg-white shadow-2xl rounded-xl overflow-hidden">
+                                    <div class="portfolio-hover h-full w-full text-center"  @click="showModal = true">
+                                        Test Title
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Marche 3 Piliers -->
+            <div class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50 custom-modal"
+                x-show="showModal">
+                <!-- Modal inner -->
+                <div class="max-w-3xl px-6 py-4 mx-auto text-left bg-white rounded shadow-lg"
+                    @click.away="showModal = false" x-transition:enter="motion-safe:ease-out duration-300"
+                    x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+                    <!-- Title / Close-->
+                    <div class="flex items-center justify-between">
+                        <h5 class="mr-3 text-black max-w-none"></h5>
+
+                        <button type="button" class="z-50 cursor-pointer" @click="showModal = false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- content -->
+                    <div id="scrollbar-style" class="modal-content px-2">
+                        <h2 class="text-6xl">Marché 3 Piliers</h2>
+                        <h3 class="text-3xl">Android/Web Development</h3>
+                        <p class="font-semibold mt-4">Role</p>
+                        <p>Android Developer and Fullstack Developer</p>
+                        <p class="font-semibold">Results</p>
+                        <ul>
+                            <li>Successfully delivered an Android application for inventory management.</li>
+                            <li>Successfully integrated the payment system on the e-commerce website.</li>
+                        </ul>
+                        <img class="w-full mt-2" src="./assets/Marche3Piliers/WideScreenBrowserMockup.png" alt="" />
+
+                        <div class="text-center mt-10 pb-4">
+                            <a href="https://www.3piliers.ca/fr/index.html" target="blank"
+                                class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded mt-12 mt-4 mb-2">
+                                Go to website
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Modal Marche 3 Piliers -->
+            <!-- Modal VikasUXDesigner -->
+            <div class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50 custom-modal"
+                x-show="showModal2">
+                <!-- Modal inner -->
+                <div class="max-w-3xl px-6 py-4 mx-auto text-left bg-white rounded shadow-lg"
+                    @click.away="showModal2 = false" x-transition:enter="motion-safe:ease-out duration-300"
+                    x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+                    <!-- Title / Close-->
+                    <div class="flex items-center justify-between">
+                        <h5 class="mr-3 text-black max-w-none"></h5>
+
+                        <button type="button" class="z-50 cursor-pointer" @click="showModal2 = false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- content -->
+                    <div id="scrollbar-style" class="modal-content px-2">
+                        <h2 class="text-6xl">Portfolio website development</h2>
+                        <h3 class="text-3xl">Web/Wordpress Development</h3>
+                        <p class="font-semibold mt-4">Role</p>
+                        <p>Web Developer</p>
+                        <p class="font-semibold">Results</p>
+                        <ul>
+                            <li>Successfully delivered a webiste per the design of the client</li>
+                            <li>Successfully delivered a custom Wordpress theme to allow easy customization by the client</li>
+                        </ul>
+                        <img class="w-full mt-2" src="./images/vikas-website.png" alt="" />
+
+                        <div class="text-center mt-10 pb-4">
+                            <a href="https://vikasuxdesigner.com/" target="blank"
+                                class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded mt-12 mt-4 mb-2">
+                                Go to website
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Modal VikasUXDesigner -->
+            <!-- Modal Spring Projects -->
+            <div class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50 custom-modal"
+                x-show="showModal3">
+                <!-- Modal inner -->
+                <div class="max-w-3xl px-6 py-4 mx-auto text-left bg-white rounded shadow-lg"
+                    @click.away="showModal3 = false" x-transition:enter="motion-safe:ease-out duration-300"
+                    x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+                    <!-- Title / Close-->
+                    <div class="flex items-center justify-between">
+                        <h5 class="mr-3 text-black max-w-none"></h5>
+
+                        <button type="button" class="z-50 cursor-pointer" @click="showModal3 = false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- content -->
+                    <div id="scrollbar-style" class="modal-content px-2">
+                        <h2 class="text-6xl">Spring Projects</h2>
+                        <ul class="mt-12 text-2xl">
+                            <li class="text-blue-400 hover:text-purple-300"><a href="https://github.com/EpicWebDev/spring-projects">Spring and Angular app</a></li>
+                            <li class="text-blue-400 hover:text-purple-300"><a href="https://github.com/EpicWebDev/spring-projects">Spring websockets app</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Modal Spring Projects -->
+            <!-- Modal Nuance -->
+            <div class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50 custom-modal"
+                x-show="showModal4">
+                <!-- Modal inner -->
+                <div class="max-w-3xl px-6 py-4 mx-auto text-left bg-white rounded shadow-lg"
+                    @click.away="showModal4 = false" x-transition:enter="motion-safe:ease-out duration-300"
+                    x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+                    <!-- Title / Close-->
+                    <div class="flex items-center justify-between">
+                        <h5 class="mr-3 text-black max-w-none"></h5>
+
+                        <button type="button" class="z-50 cursor-pointer" @click="showModal4 = false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- content -->
+                    <div id="scrollbar-style" class="modal-content px-2">
+                        <h2 class="text-6xl">Nuance Communications</h2>
+                        <h3 class="text-3xl">QA Internship -- 8 months</h3>
+                        <p class="font-semibold mt-4">Role</p>
+                        <p>QA Engineer</p>
+                        <p class="font-semibold">Results</p>
+                        <ul>
+                            <li>Successfully converted habitual manual tests into automatic tests</li>
+                            <li>Successfully delivered a custom Wordpress theme to allow easy customization by the client</li>
+                            <li>Successfully delivered a webiste per the design of the client</li>
+                            <li>Successfully delivered a custom Wordpress theme to allow easy customization by the client</li>
+                            <li>Successfully delivered a webiste per the design of the client</li>
+                            <li>Successfully delivered a custom Wordpress theme to allow easy customization by the client</li>
+                        </ul>
+
+                        <img class="mx-auto w-40 mt-2" src="./images/Nuance.jpg" alt="" />
+                    </div>
+                </div>
+            </div>
+            <!-- End of Modal Nuance -->
+            <!-- Modal Front-End projects -->
+            <div class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50 custom-modal"
+                x-show="showModal5">
+                <!-- Modal inner -->
+                <div class="max-w-3xl px-6 py-4 mx-auto text-left bg-white rounded shadow-lg"
+                    @click.away="showModal5 = false" x-transition:enter="motion-safe:ease-out duration-300"
+                    x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+                    <!-- Title / Close-->
+                    <div class="flex items-center justify-between">
+                        <h5 class="mr-3 text-black max-w-none"></h5>
+
+                        <button type="button" class="z-50 cursor-pointer" @click="showModal5 = false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- content -->
+                    <div id="scrollbar-style" class="modal-content px-2">
+                        <h2 class="text-6xl">Front-End Projects</h2>
+                        <ul class="mt-12 text-2xl">
+                            <li class="text-blue-400 hover:text-purple-300"><a href="https://github.com/EpicWebDev/front-end-exercises">Hotel website</a></li>
+                            <li class="text-blue-400 hover:text-purple-300"><a href="https://github.com/EpicWebDev/front-end-exercises">Blogr -- Front-End Mentor Practice</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Modal Front-End Projects -->
+            <!-- Modal FMath -->
+            <div class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50 custom-modal"
+                x-show="showModal6">
+                <!-- Modal inner -->
+                <div class="max-w-3xl px-6 py-4 mx-auto text-left bg-white rounded shadow-lg"
+                    @click.away="showModal6 = false" x-transition:enter="motion-safe:ease-out duration-300"
+                    x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+                    <!-- Title / Close-->
+                    <div class="flex items-center justify-between">
+                        <h5 class="mr-3 text-black max-w-none"></h5>
+
+                        <button type="button" class="z-50 cursor-pointer" @click="showModal6 = false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- content -->
+                    <div id="scrollbar-style" class="modal-content px-2">
+                        <h2 class="text-6xl">FMath Editor Extension</h2>
+                        <p class="font-semibold mt-4">Role</p>
+                        <p>Web Developer</p>
+
+                        <p class="font-semibold">Description</p>
+                        <p>
+                            Currently working on an extension to the FMath Editor to store equations in a repository-like format.
+                        </p>
+
+                        <img class="mx-auto w-40 mt-2" src="./images/Nuance.jpg" alt="" />
+
+                        <div class="text-center mt-10 pb-4">
+                            <a href="https://workspace.google.com/marketplace/app/fmath_editor_suite/109103342104" target="blank"
+                                class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded mt-12 mt-4 mb-2">
+                                Go to app
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Modal FMath -->
+            <!-- Modal Oratek -->
+            <div class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50 custom-modal"
+                x-show="showModal7">
+                <!-- Modal inner -->
+                <div class="max-w-3xl px-6 py-4 mx-auto text-left bg-white rounded shadow-lg"
+                    @click.away="showModal7 = false" x-transition:enter="motion-safe:ease-out duration-300"
+                    x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+                    <!-- Title / Close-->
+                    <div class="flex items-center justify-between">
+                        <h5 class="mr-3 text-black max-w-none"></h5>
+
+                        <button type="button" class="z-50 cursor-pointer" @click="showModal7 = false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- content -->
+                    <div id="scrollbar-style" class="modal-content px-2">
+                        <h2 class="text-6xl">Oratek360</h2>
+                        <h3 class="text-3xl">Web/Android Development</h3>
+                        <p class="font-semibold mt-4">Role</p>
+                        <p>Web/Android Developer</p>
+                        <p class="font-semibold">Description</p>
+                        <p>
+                            Designed and developed a time tracking application with RFID integration on Android tablets.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+            <!-- End of Modal Oratek -->
+            <!-- Modal Blockchain Projects -->
+            <div class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50 custom-modal"
+                x-show="showModal8">
+                <!-- Modal inner -->
+                <div class="max-w-3xl px-6 py-4 mx-auto text-left bg-white rounded shadow-lg"
+                    @click.away="showModal8 = false" x-transition:enter="motion-safe:ease-out duration-300"
+                    x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+                    <!-- Title / Close-->
+                    <div class="flex items-center justify-between">
+                        <h5 class="mr-3 text-black max-w-none"></h5>
+
+                        <button type="button" class="z-50 cursor-pointer" @click="showModal8 = false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- content -->
+                    <div id="scrollbar-style" class="modal-content px-2">
+                        <h2 class="text-6xl">Blockchain Projects</h2>
+                        <ul class="mt-12 text-2xl">
+                            <li class="text-blue-400 hover:text-purple-300"><a href="https://github.com/EpicWebDev/spring-projects">Spring and Angular app</a></li>
+                            <li class="text-blue-400 hover:text-purple-300"><a href="https://github.com/EpicWebDev/spring-projects">Spring websockets app</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Modal Blockchain Projects -->
+            <!-- Modal Java Projects -->
+            <div class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50 custom-modal"
+                x-show="showModal9">
+                <!-- Modal inner -->
+                <div class="max-w-3xl px-6 py-4 mx-auto text-left bg-white rounded shadow-lg"
+                    @click.away="showModal9 = false" x-transition:enter="motion-safe:ease-out duration-300"
+                    x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+                    <!-- Title / Close-->
+                    <div class="flex items-center justify-between">
+                        <h5 class="mr-3 text-black max-w-none"></h5>
+
+                        <button type="button" class="z-50 cursor-pointer" @click="showModal9 = false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- content -->
+                    <div id="scrollbar-style" class="modal-content px-2">
+                        <h2 class="text-6xl">Java Projects</h2>
+                        <ul class="mt-12 text-2xl">
+                            <li class="text-blue-400 hover:text-purple-300"><a href="https://github.com/EpicWebDev/spring-projects">Spring and Angular app</a></li>
+                            <li class="text-blue-400 hover:text-purple-300"><a href="https://github.com/EpicWebDev/spring-projects">Spring websockets app</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Modal Blockchain Projects -->
+        </div>
+        <div class="section" id="section3">
+            <div class="container mx-auto h-screen p-20 text-center">
+                <h1 class="text-5xl text-center mb-20 underline-animation delay1">Contact me</h1>
+                <form class="max-w-3xl m-auto" autocomplete="off">
+                    <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                            <input
+                                class="appearance-none block w-full py-3 px-4 mb-3 leading-tight focus:outline-none bg-white shadow-2xl rounded-xl"
+                                id="grid-first-name" type="text" placeholder="Name" required autocorrect="off"
+                                spellcheck="false" autocomplete="new-password" readonly
+                                onfocus="this.removeAttribute('readonly');" />
+                        </div>
+                        <div class="w-full md:w-1/2 px-3">
+                            <input
+                                class="appearance-none block w-full text-gray-700 bg-white shadow-2xl rounded-xl py-3 px-4 leading-tight focus:outline-none focus:border-gray-500"
+                                id="grid-last-name" type="text" placeholder="Email" required autocorrect="off"
+                                spellcheck="false" autocomplete="new-password" readonly
+                                onfocus="this.removeAttribute('readonly');" />
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="w-full px-3">
+                            <textarea
+                                class=" no-resize appearance-none block w-full  text-gray-700 bg-white shadow-2xl rounded-xl py-3 px-4 mt-3 mb-3 leading-tight focus:outline-none h-48 resize-none"
+                                id="message"></textarea>
+                        </div>
+                    </div>
+
+                    <button class="bg-white mt-6 text-gray-700 font-bold py-2 px-4 rounded" type="button"
+                        id="send-button">
+                        Send
+                    </button>
+            </div>
+            </form>
+        </div>
+    </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tsparticles/1.36.0/tsparticles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jQuery-slimScroll/1.3.1/jquery.slimscroll.min.js"></script> -->
+    <!-- <script src="./js/fullpage.js"></script> -->
+    <script type="text/javascript" src="./js/fullpage.fadingEffect.min.js"></script>
+    <script src="./js/fullpage.extensions.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <script type="text/javascript">
+        $('.slider').slick({
+            infinite: false,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: true
+        });
+    </script>
+
+    <script>
+        $('form').disableAutoFill();
+        $('input').attr('autocomplete', 'off');
+    </script>
+
+    <script>
+        new fullpage('#fullpage', {
+            anchors: ['firstSection', 'secondSection', 'thirdSection', 'fourthSection'],
+            menu: '#menu',
+
+            //In addition to the extension license you'll 
+            //need to acquire a fullPage.js license from https://goo.gl/5x9a22
+            licenseKey: 'ED977303-F561495D-94386293-5B5514D7',
+            normalScrollElements: '.custom-modal',
+
+            fadingEffect: true,
+            fadingEffectKey: 'FBC277A7-CF184EC6-ADABD4DA-B58AAEC5', //see https://goo.gl/xkUmHS
+            onLeave: function (origin, destination, direction) {
+                switch (destination.index) {
+                    case 0:
+                        particles = tsParticles.domItem(0);
+                        options = particles.options;
+                        options.particles.color.value = "#3289fa";
+                        particles.refresh();
+                        $("#section0").addClass("visible");
+                        break;
+                    case 1:
+                        particles = tsParticles.domItem(0);
+                        options = particles.options;
+                        options.particles.color.value = "#2ff736";
+                        particles.refresh();
+                        $("#section1").addClass("visible");
+                        break;
+                    case 2:
+                        particles = tsParticles.domItem(0);
+                        options = particles.options;
+                        options.particles.color.value = "#fcbf30";
+                        particles.refresh();
+                        $("#section2").addClass("visible");
+                        break;
+                    case 3:
+                        particles = tsParticles.domItem(0);
+                        options = particles.options;
+                        options.particles.color.value = "#f24429";
+                        particles.refresh();
+                        $("#section3").addClass("visible");
+                        break;
+                    default:
+                    // code block
+                }
+                previousSection = "#section" + origin.index;
+                $(previousSection).removeClass("visible");
+                console.log(previousSection);
+            }
+        });
+
+
+
+    </script>
+
+    <script>
+        tsParticles
+            .loadJSON("tsparticles", "./default.json")
+            .then((container) => {
+                console.log("callback - tsparticles config loaded");
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    </script>
+</body>
+
+</html>
